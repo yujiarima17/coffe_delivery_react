@@ -20,9 +20,7 @@ export const HeaderContainer = styled.header`
     span {
       border-radius: 6px;
       display: flex;
-      font-family: 'Roboto', sans-serif;
-      line-height: 130%;
-      font-size: 14px;
+      font: ${(props) => props.theme.font['Text S']};
       color: ${(props) => props.theme['purple-dark']};
       align-items: center;
       justify-content: space-between;

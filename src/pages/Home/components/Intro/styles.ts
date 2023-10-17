@@ -23,29 +23,24 @@ export const IntroInfo = styled.div`
     gap: 1.5rem;
     div.title {
       display: flex;
-      line-height: 130%;
+      font: ${(props) => props.theme.font['Title XL']};
       flex-direction: column;
-      font-size: 48px;
-      font-family: 'Baloo 2', sans-serif;
-      font-weight: bolder;
       color: ${(props) => props.theme['base-title']};
     }
     div.subtitle {
-      line-height: 130%;
-      font-size: 20px;
-      font-family: 'Roboto', sans-serif;
+      font: ${(props) => props.theme.font['Text L-Regular']};
       color: ${(props) => props.theme['base-subtitle']};
     }
   }
 `
-export const IntroIcons = styled.div`
+export const IntroIcons = styled.div<{ $iconBackgroundColor: string }>`
   display: flex;
   gap: 0.5rem;
-  font-size: 16px;
-  font-family: 'Roboto', sans-serif;
-  font-weight: bold;
+  font: ${(props) => props.theme.font['Text M-Regular']};
+  align-items: center;
+
   span {
-    background: ${(props) => props.theme.purple};
+    background: ${(props) => props.theme[props.$iconBackgroundColor]};
     border-radius: 9999px;
     display: flex;
     align-items: center;

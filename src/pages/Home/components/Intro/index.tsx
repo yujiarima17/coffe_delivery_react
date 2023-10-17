@@ -17,27 +17,27 @@ export function Intro() {
           </div>
         </section>
         <section className="icons">
-          <IntroIcons>
+          <IntroIcons $iconBackgroundColor="yellow-dark">
             <span>
-              <ShoppingCart color="#C47F17" weight="fill" />
+              <ShoppingCart color="#FFFFFF" weight="fill" />
             </span>
             <p>Compra simples e segura</p>
           </IntroIcons>
-          <IntroIcons>
+          <IntroIcons $iconBackgroundColor="base-text">
             <span>
-              <ShoppingCart color="#C47F17" weight="fill" />
+              <ShoppingCart color="#FFFFFF" weight="fill" />
             </span>
             <p>Embalagem mantém o café intacto</p>
           </IntroIcons>
-          <IntroIcons>
+          <IntroIcons $iconBackgroundColor="yellow">
             <span>
-              <ShoppingCart color="#C47F17" weight="fill" />
+              <ShoppingCart color="#FFFFFF" weight="fill" />
             </span>
             <p>Entrega rápida e rastreada</p>
           </IntroIcons>
-          <IntroIcons>
+          <IntroIcons $iconBackgroundColor="purple">
             <span>
-              <ShoppingCart color="#C47F17" weight="fill" />
+              <ShoppingCart color="#FFFFFF" weight="fill" />
             </span>
             <p>O café chega fresquinho até você</p>
           </IntroIcons>
