@@ -45,6 +45,9 @@ export const CoffeCardInfo = styled.div`
     flex-direction: column;
     align-items: center;
     span.label {
+      width: 216px;
+      overflow-wrap: break-word;
+      text-align: center;
       color: ${(props) => props.theme['base-label']};
       font: ${(props) => props.theme.font['Text S']};
     }
