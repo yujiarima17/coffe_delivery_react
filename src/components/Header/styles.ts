@@ -2,7 +2,9 @@ import styled from 'styled-components'
 
 export const HeaderContainer = styled.header`
   display: flex;
-  height: 108px;
+  width: 100%;
+  padding-top: 32px;
+  padding-bottom: 32px;
   align-items: center;
   justify-content: space-between;
   div.info-bar {

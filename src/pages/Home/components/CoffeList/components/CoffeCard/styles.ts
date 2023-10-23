@@ -57,16 +57,36 @@ export const CoffeCardBuy = styled.div`
   display: flex;
   flex: 1;
   justify-content: flex-end;
+  align-items: center;
   gap: 1rem;
   div.coffePrice {
     display: flex;
     color: ${(props) => props.theme['base-text']};
     font: ${(props) => props.theme.font['Text S']};
     justify-content: center;
-    align-items: center;
+    align-items: baseline;
     gap: 0.2rem;
     span.coffePriceAmount {
       font: ${(props) => props.theme.font['Title M']};
+      color: ${(props) => props.theme['base-text']};
+    }
+  }
+  div.actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 118px;
+    height: 38px;
+    gap: 0.5rem;
+    span {
+      display: flex;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      align-items: center;
+      background: ${(props) => props.theme['purple-dark']};
+      color: ${(props) => props.theme.white};
+      border-radius: 8px;
     }
   }
 `

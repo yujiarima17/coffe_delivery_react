@@ -1,5 +1,7 @@
 import { CoffeCardInfo, CoffeCardContainer, CoffeCardBuy } from './styles'
 import { coffeProps } from '../../../../../../data/cafes'
+import { ShoppingCartSimple } from 'phosphor-react'
+import { Input } from '../../../../../../components/Input'
 export function CoffeCard({
   id,
   tag,
@@ -28,6 +30,13 @@ export function CoffeCard({
       <CoffeCardBuy>
         <div className="coffePrice">
           R$ <span className="coffePriceAmount">{price}</span>
+        </div>
+        <div className="actions">
+          <Input />
+
+          <span>
+            <ShoppingCartSimple size={24} color="#FFFFFF" weight="fill" />
+          </span>
         </div>
       </CoffeCardBuy>
     </CoffeCardContainer>

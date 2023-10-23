@@ -18,6 +18,7 @@ export const defaultTheme = {
   'purple-dark': '#4B2995',
   purple: '#8047F8',
   'purple-light': '#EBE5F9',
+  
   font: {
     'Title XL': 'bolder 48px/130% Baloo2, sans-serif',
     'Title L': 'bolder 32px/130% Baloo2, sans-serif',

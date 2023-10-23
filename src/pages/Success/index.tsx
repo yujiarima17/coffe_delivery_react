@@ -1,3 +1,26 @@
+// eslint-disable-next-line import/no-absolute-path
+import DeliveryIllustration from '/src/assets/delivery_illustration.svg'
+
+import {
+  SucessContainer,
+  SucessContainerHeader,
+  SucessInfoContainer,
+} from './styles'
+import { OrderInfo } from './components/OrderInfo'
+
 export function Success() {
-  return <h1> Success</h1>
+  return (
+    <SucessContainer>
+      <SucessInfoContainer>
+        <SucessContainerHeader>
+          <div className="title">Uhu!Pedido Confirmado</div>
+          <div className="subtitle">
+            Agora é só aguardar que logo o café chegará até você
+          </div>
+        </SucessContainerHeader>
+        <OrderInfo></OrderInfo>
+      </SucessInfoContainer>
+      <img src={DeliveryIllustration} alt="" />
+    </SucessContainer>
+  )
 }
