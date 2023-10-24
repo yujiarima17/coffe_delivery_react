@@ -1,9 +1,12 @@
 import { Minus, Plus } from 'phosphor-react'
 import { CoffeButton, CoffeInput, CoffeInputNumber } from './styles'
-import { useFormContext } from 'react-hook-form'
 import { useState } from 'react'
-export function Input() {
-  const { register } = useFormContext()
+import {FieldValues, UseFormRegister} from 'react-hook-form'
+interface InputProps {
+  register : UseFormRegister<FieldValues>
+  inputName : string
+}
+export function Input({register,inputName}:InputProps) {
   const [coffeQuantity, setCoffeQuantity] = useState(1)
   function plus() {
     setCoffeQuantity((coffeQuantity) => coffeQuantity + 1)
@@ -23,7 +26,7 @@ export function Input() {
         step={1}
         type="number"
         min={1}
-        {...(register('quantity'), { valueAsNumber: true })}
+        {...register(inputName,{valueAsNumber:true})}
       />
       <CoffeButton onClick={minus}>
         <Minus size={16} />
