@@ -1,7 +1,9 @@
 import { CoffeCardInfo, CoffeCardContainer, CoffeCardBuy } from './styles'
 import { coffeProps } from '../../../../../../data/cafes'
-import { ShoppingCartSimple } from 'phosphor-react'
-import { Input } from '../../../../../../components/Input'
+import * as zod from 'zod'
+import { FormProvider, useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { CoffeForm } from '../CoffeForm'
 export function CoffeCard({
   id,
   tag,
@@ -11,7 +13,25 @@ export function CoffeCard({
   image,
 }: coffeProps) {
   const urlImage = `/src/assets/Type=${image}.svg`
-
+  interface addCoffeData {
+    quantity: number
+  }
+  const addCoffeItemValidationSchema = zod.object({
+    quantity: zod
+      .number()
+      .min(1)
+      .max(20, 'The maximum number of items is twenty'),
+  })
+  const addCoffeForm = useForm<addCoffeData>({
+    resolver: zodResolver(addCoffeItemValidationSchema),
+    defaultValues: {
+      quantity: 1,
+    },
+  })
+  // function handleAddCoffe(data: addCoffeData) {
+  //   reset()
+  // }
+  const { handleSubmit, reset } = addCoffeForm
   return (
     <CoffeCardContainer>
       <CoffeCardInfo>
@@ -31,13 +51,11 @@ export function CoffeCard({
         <div className="coffePrice">
           R$ <span className="coffePriceAmount">{price}</span>
         </div>
-        <div className="actions">
-          <Input />
-
-          <span>
-            <ShoppingCartSimple size={24} color="#FFFFFF" weight="fill" />
-          </span>
-        </div>
+        <form action="" onSubmit={handleSubmit(() => console.log('hello'))}>
+          <FormProvider {...addCoffeForm}>
+            <CoffeForm />
+          </FormProvider>
+        </form>
       </CoffeCardBuy>
     </CoffeCardContainer>
   )
