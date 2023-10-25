@@ -1,31 +1,35 @@
 import { Minus, Plus } from 'phosphor-react'
 import { CoffeSpanButton, CoffeInput, CoffeInputNumber } from './styles'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FieldValues, UseFormRegister, useFormContext } from 'react-hook-form'
 
 interface InputProps {
   register: UseFormRegister<FieldValues>
   inputName: string
-  children: React.ReactNode
 }
-export function Input({ register, inputName, children }: InputProps) {
-  const [quantity, setQuantity] = useState(register(inputName).value)
-  const { setValue, register } = useFormContext()
+export function Input({ register, inputName}: InputProps) {
+  const {formState:{isSubmitSuccessful}} = useFormContext()
+  const [quantity, setQuantity] = useState(1)
   function plus() {
-    setValue(inputName, quantity + 1)
     setQuantity((quantity) => quantity + 1)
   }
   function minus() {
-    setValue(inputName, quantity - 1)
     setQuantity((quantity) => quantity - 1)
   }
+  useEffect(() => {
+    // Use um efeito para atualizar o estado local quando o formulário for redefinido
+    if (isSubmitSuccessful) {
+      setQuantity(0);
+    }
+  }, [isSubmitSuccessful]);
   return (
-    <CoffeFormContainer>
+
       <CoffeInput>
         <CoffeSpanButton onClick={minus}>
           <Minus size={16} />
         </CoffeSpanButton>
         <CoffeInputNumber
+         value={quantity}
           max={20}
           placeholder="1"
           step={1}
@@ -36,8 +40,8 @@ export function Input({ register, inputName, children }: InputProps) {
         <CoffeSpanButton onClick={plus}>
           <Plus size={16} />
         </CoffeSpanButton>
-        {children}
+      
       </CoffeInput>
-    </CoffeFormContainer>
+    
   )
 }

@@ -14,10 +14,18 @@ export const HeaderContainer = styled.header`
     a {
       border-radius: 6px;
       display: flex;
-      justify-content: center;
-      align-items: center;
+      flex-direction: column;
       width: 38px;
       background: ${(props) => props.theme['yellow-light']};
+      span.itemsInCart{ 
+        display: flex;
+        margin-top: -10px;
+        margin-right: -10px;
+        justify-content: end;
+        padding: 0;
+        color: ${(props) => props.theme.white};
+        background: ${(props) => props.theme['yellow-light']};
+      }
     }
     span {
       border-radius: 6px;
@@ -29,6 +37,9 @@ export const HeaderContainer = styled.header`
       gap: 0.1rem;
       padding: 10px;
       background: ${(props) => props.theme['purple-light']};
+      
+       
+      
     }
   }
 `
