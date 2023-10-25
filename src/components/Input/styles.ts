@@ -10,7 +10,7 @@ export const CoffeInput = styled.div`
   background: ${(props) => props.theme['base-button']};
   border-radius: 8px;
 `
-export const CoffeButton = styled.button`
+export const CoffeSpanButton = styled.span`
   display: flex;
   color: ${(props) => props.theme.purple};
   outline: 0;
@@ -32,4 +32,10 @@ export const CoffeInputNumber = styled.input`
     -webkit-appearance: none;
     margin: 0;
   }
+`
+export const CoffeFormContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 `

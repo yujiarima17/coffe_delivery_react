@@ -4,21 +4,21 @@ import { produce } from 'immer'
 export interface Coffe {
   id: string
   coffeName: string
-  quantity: number
+  orderQuantity: number
 }
 interface CafesState {
   cafes: Coffe[]
 }
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function cyclesReducer(state: CafesState, action: any) {
+export function cafesReducer(state: CafesState, action: any) {
   switch (action.type) {
     case ActionTypes.ADD_COFFE:
       return produce(state, (draft) => {
-        const coffeAlreadyAdded = draft.cafes.includes(action.payload.newCoffe)
-
-        if (coffeAlreadyAdded) {
-          const coffeIndex = draft.cafes.indexOf(action.payload.newCoffe)
-          draft.cafes[coffeIndex].quantity += 1
+        const indexOfCoffeAlreadyAdded = draft.cafes.findIndex(
+          (coffe) => coffe.id === action.payload.newCoffe.id,
+        )
+        if (indexOfCoffeAlreadyAdded !== -1) {
+          draft.cafes[indexOfCoffeAlreadyAdded].orderQuantity += 1
         } else {
           draft.cafes.push(action.payload.newCoffe)
         }
@@ -26,8 +26,10 @@ export function cyclesReducer(state: CafesState, action: any) {
     case ActionTypes.REMOVE_COFFE:
       return produce(state, (draft) => {
         const removeCoffeIndex = draft.cafes.indexOf(action.payload.newCoffe)
-        draft.cafes[removeCoffeIndex].quantity -=
+        draft.cafes[removeCoffeIndex].orderQuantity -=
           action.payload.removeCoffe.quantity
       })
+    default:
+      return state
   }
 }
