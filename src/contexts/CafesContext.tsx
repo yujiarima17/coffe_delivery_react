@@ -4,7 +4,7 @@
 import { ReactNode, createContext, useReducer } from 'react'
 import { Coffe, cafesReducer } from '../reducers/cafes/reducer'
 import { addCoffeAction, removeCoffeAction } from '../reducers/cafes/actions'
-interface CoffeData {
+export interface CoffeData {
   id: string
   coffeName: string
   orderQuantity: number

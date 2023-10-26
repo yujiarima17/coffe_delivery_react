@@ -14,6 +14,7 @@ import * as zod from 'zod'
 import { CafesContext } from '../../../../../../contexts/CafesContext'
 interface AddCoffeData {
   orderQuantity: number
+  orderQuantity1: number
 }
 export function CoffeCard({
   id,
@@ -39,15 +40,13 @@ export function CoffeCard({
 
   const { handleSubmit, reset } = addCoffeForm
   function handleAddCoffe(data: AddCoffeData) {
+    console.log(data)
     const newData = { id, coffeName, orderQuantity: data.orderQuantity }
+
     addNewCoffe(newData)
 
     reset()
   }
-  useEffect(() => {
-    console.log(cafes) // Isso será executado sempre que cafes for atualizado
-  }, [cafes])
-
   return (
     <CoffeCardContainer>
       <CoffeCardInfo>
