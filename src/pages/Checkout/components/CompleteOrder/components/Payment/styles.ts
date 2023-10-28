@@ -15,4 +15,8 @@ export const PaymentOption = styled.div`
   padding: 16px;
   flex: 1;
   border-radius: 6px;
+  &.selected {
+    background: ${(props) => props.theme['purple-light']};
+    border: 1px solid ${(props) => props.theme.purple};
+  }
 `
