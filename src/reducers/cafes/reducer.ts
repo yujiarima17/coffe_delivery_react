@@ -17,17 +17,21 @@ export function cafesReducer(state: CafesState, action: any) {
         const indexOfCoffeAlreadyAdded = draft.cafes.findIndex(
           (coffe) => coffe.id === action.payload.newCoffe.id,
         )
-        if (indexOfCoffeAlreadyAdded !== -1) {
-          draft.cafes[indexOfCoffeAlreadyAdded].orderQuantity += 1
-        } else {
-          draft.cafes.push(action.payload.newCoffe)
-        }
+        indexOfCoffeAlreadyAdded !== -1
+          ? (draft.cafes[indexOfCoffeAlreadyAdded].orderQuantity += 1)
+          : draft.cafes.push(action.payload.newCoffe)
       })
     case ActionTypes.REMOVE_COFFE:
       return produce(state, (draft) => {
-        const removeCoffeIndex = draft.cafes.indexOf(action.payload.newCoffe)
-        draft.cafes[removeCoffeIndex].orderQuantity -=
-          action.payload.removeCoffe.quantity
+        console.log(action.payload.removeCoffe.id)
+        const indexOfRemovedCoffe = draft.cafes.findIndex(
+          (coffe) => coffe.id === action.payload.removeCoffe.id,
+        )
+        const totalAmount = draft.cafes[indexOfRemovedCoffe].orderQuantity
+        const amountToRemove = action.payload.removeCoffe.orderQuantity
+        if (amountToRemove <= totalAmount) {
+          draft.cafes[indexOfRemovedCoffe].orderQuantity -= amountToRemove
+        }
       })
     default:
       return state
