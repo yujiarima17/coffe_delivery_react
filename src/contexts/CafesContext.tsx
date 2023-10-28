@@ -41,6 +41,7 @@ export function CafesContextProvider({ children }: CafesContextProviderProps) {
       coffeName: data.coffeName,
       orderQuantity: data.orderQuantity,
     }
+    console.log('cheguei')
     dispatch(removeCoffeAction(removeCoffe))
   }
   return (

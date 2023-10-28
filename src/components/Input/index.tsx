@@ -25,14 +25,14 @@ export function Input() {
   useEffect(() => {
     // Use um efeito para atualizar o estado local quando o formulário for redefinido
     if (isSubmitSuccessful) {
-      setQuantity(0)
+      setQuantity(1)
     }
   }, [isSubmitSuccessful])
 
   return (
     <CoffeInput>
       <CoffeSpanButton onClick={minus}>
-        <Minus size={16} />
+        <Minus size={14} />
       </CoffeSpanButton>
       <CoffeInputNumber
         id="orderQuantity"
@@ -45,7 +45,7 @@ export function Input() {
         {...register('orderQuantity', { valueAsNumber: true })}
       />
       <CoffeSpanButton onClick={plus}>
-        <Plus size={16} />
+        <Plus size={14} />
       </CoffeSpanButton>
     </CoffeInput>
   )

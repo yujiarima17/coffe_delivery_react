@@ -2,13 +2,11 @@ import styled from 'styled-components'
 
 export const CoffeInput = styled.div`
   display: flex;
-  gap: 0.5rem;
+  gap: 4px;
+  padding: 8px;
   align-items: center;
-  justify-content: center;
-  width: 72px;
-  height: 38px;
   background: ${(props) => props.theme['base-button']};
-  border-radius: 8px;
+  border-radius: 6px;
 `
 export const CoffeSpanButton = styled.span`
   display: flex;
@@ -18,9 +16,14 @@ export const CoffeSpanButton = styled.span`
   border: 0;
 `
 export const CoffeInputNumber = styled.input`
-  width: 14px;
-  color: ${(props) => props.theme.purple};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  text-align: center;
+  color: ${(props) => props.theme['base-title']};
   outline: 0;
+  font: ${(props) => props.theme.font['Text M-Regular']};
   background: transparent;
   border: 0;
 

@@ -14,7 +14,6 @@ import * as zod from 'zod'
 import { CafesContext } from '../../../../../../contexts/CafesContext'
 interface AddCoffeData {
   orderQuantity: number
-  orderQuantity1: number
 }
 export function CoffeCard({
   id,
@@ -40,7 +39,6 @@ export function CoffeCard({
 
   const { handleSubmit, reset } = addCoffeForm
   function handleAddCoffe(data: AddCoffeData) {
-    console.log(data)
     const newData = { id, coffeName, orderQuantity: data.orderQuantity }
 
     addNewCoffe(newData)
@@ -54,7 +52,9 @@ export function CoffeCard({
 
         <div className="coffeType">
           {tag.map((tag) => (
-            <span className="type">{tag}</span>
+            <span className="type" key={id.substring(0, 3) + tag}>
+              {tag}
+            </span>
           ))}
         </div>
         <span className="coffeName">{coffeName}</span>

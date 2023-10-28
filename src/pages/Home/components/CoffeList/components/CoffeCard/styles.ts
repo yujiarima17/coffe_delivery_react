@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const CoffeCardContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 19.37rem;
+  height: 19.375rem;
   width: 16rem;
   justify-content: center;
   align-items: center;
@@ -29,11 +29,10 @@ export const CoffeCardInfo = styled.div`
       background: ${(props) => props.theme['yellow-light']};
       color: ${(props) => props.theme['yellow-dark']};
       font: ${(props) => props.theme.font.Tag};
-      height: 21px;
-      width: 81px;
+      padding: 4px 8px;
       align-items: center;
       justify-content: center;
-      border-radius: 15px;
+      border-radius: 100px;
     }
   }
   span.coffeName {
@@ -79,12 +78,11 @@ export const CoffeCardBuy = styled.div`
 export const CoffeButton = styled.button`
   display: flex;
   border: 0;
+  padding: 8px;
   outline: 0;
   justify-content: center;
-  width: 38px;
-  height: 38px;
   align-items: center;
   background: ${(props) => props.theme['purple-dark']};
   color: ${(props) => props.theme.white};
-  border-radius: 8px;
+  border-radius: 6px;
 `
