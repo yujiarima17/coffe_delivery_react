@@ -1,42 +1,36 @@
+import { useFormContext } from 'react-hook-form'
+import { Header, Container } from '../../styles'
+import { MapPinLine } from 'phosphor-react'
+import axios from 'axios'
 import {
-  AdressContinuedInput,
   DeliveryForm,
   DeliveryFormInput,
   DeliveryFormInput2,
+  AddressContinuedInput,
 } from './styles'
-import axios from 'axios'
-import { Header, Container } from '../../styles'
-import { MapPinLine } from 'phosphor-react'
-import * as zod from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
 import { useState } from 'react'
+import { OrderData } from '../../../../../../validator/Order'
 
-export function AdressForm() {
-  const AdressFormValidator = zod.object({
-    cep: zod.string(),
-    logradouro: zod.string(),
-    numero: zod.string(),
-    complemento: zod.string(),
-    bairro: zod.string(),
-    localidade: zod.string(),
-    uf: zod.string(),
-  })
-  type AdressData = zod.infer<typeof AdressFormValidator>
-
-  const [addressData, setAdressData] = useState<AdressData>()
-
-  const adressForm = useForm<AdressData>({
-    resolver: zodResolver(AdressFormValidator),
-  })
-  const { register, watch, handleSubmit } = adressForm
+export function AddressForm() {
+  const {
+    register,
+    watch,
+    setValue,
+    formState: { errors },
+  } = useFormContext()
   const cepField = watch('cep')
+  const [addressData, setAddressData] = useState<OrderData>()
   function getAdressDataByCEP(CEP: string) {
     const baseURl = `https://viacep.com.br/ws/${CEP}/json/`
-    axios.get(baseURl).then((response) => setAdressData(response.data))
-  }
-  function handleAdressSubmit(data: AdressData) {
-    setAdressData(data)
+    try {
+      axios.get(baseURl).then((response) => setAddressData(response.data))
+    } catch (e) {
+      console.log(e)
+    }
+    setValue('logradouro', addressData.logradouro)
+    setValue('bairro', addressData.bairro)
+    setValue('localidade', addressData.localidade)
+    setValue('uf', addressData.uf)
   }
   return (
     <Container>
@@ -47,29 +41,30 @@ export function AdressForm() {
           <span>Informe o endereço onde deseja receber seu pedido</span>
         </div>
       </Header>
-      <DeliveryForm onSubmit={handleSubmit(handleAdressSubmit)}>
+      <DeliveryForm>
         <DeliveryFormInput
           id="CEP"
           $width="200px"
           placeholder="CEP"
-          {...register('cep', { onBlur: () => getAdressDataByCEP(cepField) })}
+          {...register('cep', {
+            onBlur: () => getAdressDataByCEP(cepField),
+          })}
           // onBlur={getAdressDataByCEP(cepField)}
         />
         <DeliveryFormInput
           id="RUA"
-          value={addressData?.logradouro}
           $width="560px"
           placeholder="Rua"
-          {...register('logradouro')}
+          {...register('logradouro', { required: true })}
         />
         <section>
           <DeliveryFormInput
             id="NUMERO"
             $width="200px"
             placeholder="Número"
-            {...register('numero')}
+            {...register('numero', { required: true })}
           />
-          <AdressContinuedInput>
+          <AddressContinuedInput>
             <DeliveryFormInput2
               id="COMPLEMENTO"
               $width="348px"
@@ -77,29 +72,26 @@ export function AdressForm() {
               placeholder="Complemento"
             />
             <span>Opcional</span>
-          </AdressContinuedInput>
+          </AddressContinuedInput>
         </section>
         <section>
           <DeliveryFormInput
             id="BAIRRO"
-            value={addressData?.bairro}
             $width="200px"
             placeholder="Bairro"
-            {...register('bairro')}
+            {...register('bairro', { required: true })}
           />
           <DeliveryFormInput
             id="CIDADE"
-            value={addressData?.localidade}
             $width="276px"
             placeholder="Cidade"
-            {...register('localidade')}
+            {...register('localidade', { required: true })}
           />
           <DeliveryFormInput
             id="UF"
-            value={addressData?.uf}
             $width="60px"
             placeholder="UF"
-            {...register('uf')}
+            {...register('uf', { required: true })}
           />
         </section>
       </DeliveryForm>

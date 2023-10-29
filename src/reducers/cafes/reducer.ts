@@ -4,6 +4,7 @@ import { produce } from 'immer'
 export interface Coffe {
   id: string
   coffeName: string
+  coffePrice: number
   orderQuantity: number
 }
 interface CafesState {

@@ -1,7 +1,11 @@
 import { Trash } from 'phosphor-react'
 import * as zod from 'zod'
 import { Divider } from '../../styles'
-import { ShoppingCartButton, ShoppingCartForm, ShoppingCartItemContainer } from './styles'
+import {
+  ShoppingCartButton,
+  ShoppingCartForm,
+  ShoppingCartItemContainer,
+} from './styles'
 import { FormProvider, useForm } from 'react-hook-form'
 import { CoffeForm } from '../../../../../Home/components/CoffeList/components/CoffeForm'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -13,12 +17,15 @@ interface ShoppingCartItemProps {
   id: string
   coffeName: string
   price: number
+  orderQuantity: number
 }
 export function ShoppingCartItem({
   id,
   coffeName,
   price,
+  orderQuantity,
 }: ShoppingCartItemProps) {
+  console.log(id, coffeName, price, orderQuantity)
   interface RemoveCoffeData {
     id: string
     coffeName: string
@@ -40,18 +47,24 @@ export function ShoppingCartItem({
 
   const { handleSubmit, reset } = removeCoffeForm
   function handleRemoveCoffe(data: RemoveCoffeData) {
-    const newData = { id, coffeName, orderQuantity: data.orderQuantity }
+    const newData = {
+      id,
+      coffeName,
+      orderQuantity: data.orderQuantity,
+      price,
+    }
     removeCoffe(newData)
 
     reset()
   }
+  const coffePrice = orderQuantity * price
   return (
     <>
       <ShoppingCartItemContainer>
         <div className="info">
           <img src="/src/assets/Type=Havaiano.svg" alt="" />
           <div className="details">
-            <span>Expresso Tradicional</span>
+            <span>{coffeName}</span>
             <div className="coffeActions">
               <ShoppingCartForm
                 action=""
@@ -67,7 +80,7 @@ export function ShoppingCartItem({
             </div>
           </div>
         </div>
-        <span>{price}</span>
+        <span>R$ {coffePrice.toFixed(2)}</span>
       </ShoppingCartItemContainer>
       <Divider />
     </>

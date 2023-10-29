@@ -27,15 +27,7 @@ export const RemoveButton = styled.button`
   color: ${(props) => props.theme['base-text']};
   background: ${(props) => props.theme['base-button']};
 `
-export const ConfirmButton = styled.button`
-  border-radius: 6px;
-  padding: 12px 8px;
-  border: 0;
-  outline: 0;
-  font: ${(props) => props.theme.font['Button G']};
-  background: ${(props) => props.theme.yellow};
-  color: ${(props) => props.theme.white};
-`
+
 export const Divider = styled.div`
   display: flex;
   background: ${(props) => props.theme['base-button']};

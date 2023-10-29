@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const DeliveryForm = styled.form`
+export const DeliveryForm = styled.div`
   display: flex;
   font: ${(props) => props.theme.font['Text S']};
   flex-direction: column;
@@ -13,7 +13,7 @@ export const DeliveryForm = styled.form`
   }
 `
 
-export const AdressContinuedInput = styled.div`
+export const AddressContinuedInput = styled.div`
   display: flex;
   align-items: center;
   width: 348px;
@@ -32,6 +32,7 @@ export const AdressContinuedInput = styled.div`
 export const DeliveryFormInput = styled.input<{
   $width: string
 }>`
+
   display: flex;
   outline: 0;
   border: 1.5px solid ${(props) => props.theme['base-button']};

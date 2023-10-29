@@ -9,7 +9,7 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { CoffeForm } from '../CoffeForm'
 import { ShoppingCartSimple } from 'phosphor-react'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import * as zod from 'zod'
 import { CafesContext } from '../../../../../../contexts/CafesContext'
 interface AddCoffeData {
@@ -23,7 +23,7 @@ export function CoffeCard({
   price,
   image,
 }: coffeProps) {
-  const { addNewCoffe, cafes } = useContext(CafesContext)
+  const { addNewCoffe } = useContext(CafesContext)
   const urlImage = `/src/assets/Type=${image}.svg`
 
   const addCoffeItemValidationSchema = zod.object({
@@ -34,17 +34,22 @@ export function CoffeCard({
   })
   const addCoffeForm = useForm<AddCoffeData>({
     resolver: zodResolver(addCoffeItemValidationSchema),
-    defaultValues: { orderQuantity: 1 },
   })
 
   const { handleSubmit, reset } = addCoffeForm
   function handleAddCoffe(data: AddCoffeData) {
-    const newData = { id, coffeName, orderQuantity: data.orderQuantity }
+    const newData = {
+      id,
+      coffeName,
+      orderQuantity: data.orderQuantity,
+      price,
+    }
 
     addNewCoffe(newData)
 
     reset()
   }
+
   return (
     <CoffeCardContainer>
       <CoffeCardInfo>

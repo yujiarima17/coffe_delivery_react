@@ -1,12 +1,15 @@
 import { useContext } from 'react'
 import { ShoppingCartBillContainer } from './styles'
 import { CafesContext } from '../../../../../../contexts/CafesContext'
+import { useFormContext } from 'react-hook-form'
 
 export function ShoppingCartBill() {
   const { cafes } = useContext(CafesContext)
+  const { register } = useFormContext()
   const totalItens = cafes.reduce((prev, curr) => prev + curr.orderQuantity, 0)
-  const valorTotal = totalItens * 9.9
-  const valorEntrega = valorTotal * 0.1
+  const valorDosItens = totalItens * 9.9
+  const valorEntrega = valorDosItens * 0.1
+  const valorTotal = valorDosItens + valorEntrega
   return (
     <ShoppingCartBillContainer>
       <div className="shoppingcartTopic">
@@ -16,7 +19,18 @@ export function ShoppingCartBill() {
         Entrega <span>R$ {valorEntrega.toFixed()}</span>
       </div>
       <div className="shoppingcartTopic">
-        Total <span>R$ {valorTotal.toFixed()}</span>
+        Total
+        <div className="shoppingCartTotal">
+          R$
+          <fieldset disabled>
+            <input
+              type="text"
+              id="amount"
+              value={valorTotal}
+              {...register('amount', { valueAsNumber: true })}
+            />
+          </fieldset>
+        </div>
       </div>
     </ShoppingCartBillContainer>
   )

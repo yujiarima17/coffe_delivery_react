@@ -1,11 +1,11 @@
-import { AdressForm } from './components/AdressForm'
+import { AddressForm } from './components/AddressForm'
 import { Payment } from './components/Payment'
 import { CompleteOrderContainer } from './styles'
 
 export function CompleteOrder() {
   return (
     <CompleteOrderContainer>
-      <AdressForm></AdressForm>
+      <AddressForm></AddressForm>
       <Payment></Payment>
     </CompleteOrderContainer>
   )

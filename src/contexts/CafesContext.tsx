@@ -1,18 +1,19 @@
 import { ReactNode, createContext, useReducer } from 'react'
 import { Coffe, cafesReducer } from '../reducers/cafes/reducer'
 import { addCoffeAction, removeCoffeAction } from '../reducers/cafes/actions'
-import { AddressProps, addressReducer } from '../reducers/address/reducer'
-import { setAddressAction } from '../reducers/address/actions'
+import { OrderProps, orderReducer } from '../reducers/order/reducer'
+import { setOrderAction } from '../reducers/order/actions'
 export interface CoffeData {
-  id: string
-  coffeName: string
+  id: ''
+  coffeName: ''
+  price: number
   orderQuantity: number
 }
 
 interface CafesContextType {
-  addressData: AddressProps
+  orderData: OrderProps
   cafes: Coffe[]
-  setAddressToDelivery: (data: AddressProps) => void
+  setOrderData: (data: OrderProps) => void
   addNewCoffe: (data: CoffeData) => void
   removeCoffe: (data: CoffeData) => void
 }
@@ -25,26 +26,33 @@ export function CafesContextProvider({ children }: CafesContextProviderProps) {
   const [cafesState, dispatch] = useReducer(cafesReducer, {
     cafes: [],
   })
-  const [addressState, dispatchAddress] = useReducer(addressReducer, {
-    addressData: {
-      cep: '',
-      logradouro: '',
-      uf: '',
-      localidade: '',
-      numero: '',
-      bairro: '',
-      complemento: '',
+  const [orderState, dispatchOrder] = useReducer(orderReducer, {
+    orderData: {
+      orderDestination: {
+        uf: '',
+        localidade: '',
+        logradouro: '',
+        numero: '',
+        bairro: '',
+        cep: '',
+        complemento: '',
+      },
+      orderBill: {
+        payment: '',
+        amount: 0,
+      },
     },
   })
-  const { addressData } = addressState
+  const { orderData } = orderState
   const { cafes } = cafesState
-  function setAddressToDelivery(addressData: AddressProps) {
-    dispatchAddress(setAddressAction(addressData))
+  function setOrderData(orderData: OrderProps) {
+    dispatchOrder(setOrderAction(orderData))
   }
 
   function addNewCoffe(data: CoffeData) {
     const newCoffe: Coffe = {
       id: data.id,
+      coffePrice: data.price,
       coffeName: data.coffeName,
       orderQuantity: data.orderQuantity,
     }
@@ -53,6 +61,7 @@ export function CafesContextProvider({ children }: CafesContextProviderProps) {
   function removeCoffe(data: CoffeData) {
     const removeCoffe: Coffe = {
       id: data.id,
+      coffePrice: data.price,
       coffeName: data.coffeName,
       orderQuantity: data.orderQuantity,
     }
@@ -61,9 +70,9 @@ export function CafesContextProvider({ children }: CafesContextProviderProps) {
   return (
     <CafesContext.Provider
       value={{
-        addressData,
+        orderData,
         cafes,
-        setAddressToDelivery,
+        setOrderData,
         addNewCoffe,
         removeCoffe,
       }}
