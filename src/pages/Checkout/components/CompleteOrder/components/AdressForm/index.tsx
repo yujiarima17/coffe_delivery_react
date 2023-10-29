@@ -29,12 +29,14 @@ export function AdressForm() {
   const adressForm = useForm<AdressData>({
     resolver: zodResolver(AdressFormValidator),
   })
-  const { register, watch } = adressForm
+  const { register, watch, handleSubmit } = adressForm
   const cepField = watch('cep')
   function getAdressDataByCEP(CEP: string) {
     const baseURl = `https://viacep.com.br/ws/${CEP}/json/`
     axios.get(baseURl).then((response) => setAdressData(response.data))
-    console.log(addressData)
+  }
+  function handleAdressSubmit(data: AdressData) {
+    setAdressData(data)
   }
   return (
     <Container>
@@ -45,7 +47,7 @@ export function AdressForm() {
           <span>Informe o endereço onde deseja receber seu pedido</span>
         </div>
       </Header>
-      <DeliveryForm>
+      <DeliveryForm onSubmit={handleSubmit(handleAdressSubmit)}>
         <DeliveryFormInput
           id="CEP"
           $width="200px"
