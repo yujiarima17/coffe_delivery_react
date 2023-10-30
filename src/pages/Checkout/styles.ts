@@ -24,4 +24,6 @@ export const ConfirmButton = styled.button`
   font: ${(props) => props.theme.font['Button G']};
   background: ${(props) => props.theme.yellow};
   color: ${(props) => props.theme.white};
+  &:disabled {
+  }
 `

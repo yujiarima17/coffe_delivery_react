@@ -1,11 +1,17 @@
 import { Info, OrderInfoContainer } from './styles'
 import { CurrencyDollar, MapPin, Timer } from 'phosphor-react'
+import { CafesContext } from '../../../../contexts/CafesContext'
+import { useContext } from 'react'
 export function OrderInfo() {
+  const { orderData } = useContext(CafesContext)
+  const destinationData = orderData.orderDestination
   return (
     <OrderInfoContainer>
       <Info>
         <MapPin weight="fill" color="#8047F8" />
-        Entrega em Rua João Daniel Martinelli,102 Farrapos - Porto Alegre,RS
+        Entrega em {destinationData.logradouro},{destinationData.numero}
+        {destinationData.bairro} - {destinationData.localidade},
+        {destinationData.uf}
       </Info>
       <Info>
         <Timer weight="fill" color="#DBAC2C" />

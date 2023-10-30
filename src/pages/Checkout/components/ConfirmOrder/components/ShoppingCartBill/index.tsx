@@ -5,7 +5,7 @@ import { useFormContext } from 'react-hook-form'
 
 export function ShoppingCartBill() {
   const { cafes } = useContext(CafesContext)
-  const { register } = useFormContext()
+  const { register, setValue } = useFormContext()
   const totalItens = cafes.reduce((prev, curr) => prev + curr.orderQuantity, 0)
   const valorDosItens = totalItens * 9.9
   const valorEntrega = valorDosItens * 0.1
@@ -26,8 +26,10 @@ export function ShoppingCartBill() {
             <input
               type="text"
               id="amount"
-              value={valorTotal}
-              {...register('amount', { valueAsNumber: true })}
+              {...register('amount', {
+                valueAsNumber: true,
+                value: valorTotal,
+              })}
             />
           </fieldset>
         </div>

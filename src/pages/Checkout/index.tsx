@@ -11,7 +11,7 @@ export function Checkout() {
   const orderForm = useForm<OrderDataProps>({
     resolver: zodResolver(OrderFormValidator),
   })
-  const { handleSubmit, watch, formState } = orderForm
+  const { handleSubmit, watch, formState, reset } = orderForm
   function handleOrderSubmit(orderData: OrderDataProps) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { amount, ...orderDestinationObject } = orderData
@@ -19,8 +19,11 @@ export function Checkout() {
       orderDestination: orderDestinationObject,
       orderBill: { amount: orderData.amount, payment: '10' },
     })
+    reset()
   }
-  console.log(formState.errors)
+  const numberAdress = watch('numero')
+  const billAmount = watch('amount')
+  const disable = !!(numberAdress === undefined || billAmount === 0)
   return (
     <form action="" id="orderForm" onSubmit={handleSubmit(handleOrderSubmit)}>
       <CheckoutContainer>
@@ -35,7 +38,7 @@ export function Checkout() {
           <header>Cafés Selecionados</header>
           <FormProvider {...orderForm}>
             <ConfirmOrder>
-              <ConfirmButton type="submit" form="orderForm">
+              <ConfirmButton type="submit" form="orderForm" disabled={disable}>
                 CONFIRMAR PEDIDO
               </ConfirmButton>
             </ConfirmOrder>

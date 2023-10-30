@@ -9,7 +9,7 @@ import {
   AddressContinuedInput,
 } from './styles'
 import { useState } from 'react'
-import { OrderData } from '../../../../../../validator/Order'
+import { OrderDataProps } from '../../../../../../validator/Order'
 
 export function AddressForm() {
   const {
@@ -19,19 +19,20 @@ export function AddressForm() {
     formState: { errors },
   } = useFormContext()
   const cepField = watch('cep')
-  const [addressData, setAddressData] = useState<OrderData>()
-  function getAdressDataByCEP(CEP: string) {
+  async function getAdressDataByCEP(CEP: string) {
     const baseURl = `https://viacep.com.br/ws/${CEP}/json/`
     try {
-      axios.get(baseURl).then((response) => setAddressData(response.data))
+      const response = await axios.get(baseURl)
+      const data = response.data
+      setValue('logradouro', data?.logradouro)
+      setValue('bairro', data?.bairro)
+      setValue('localidade', data?.localidade)
+      setValue('uf', data?.uf)
     } catch (e) {
       console.log(e)
     }
-    setValue('logradouro', addressData.logradouro)
-    setValue('bairro', addressData.bairro)
-    setValue('localidade', addressData.localidade)
-    setValue('uf', addressData.uf)
   }
+  console.log(errors)
   return (
     <Container>
       <Header>
@@ -94,6 +95,11 @@ export function AddressForm() {
             {...register('uf', { required: true })}
           />
         </section>
+        <span>
+          {errors.numero && errors.numero.type === 'required' && (
+            <p>Email is required.</p>
+          )}
+        </span>
       </DeliveryForm>
     </Container>
   )
