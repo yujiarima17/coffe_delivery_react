@@ -8,8 +8,7 @@ import {
   DeliveryFormInput2,
   AddressContinuedInput,
 } from './styles'
-import { useState } from 'react'
-import { OrderDataProps } from '../../../../../../validator/Order'
+
 
 export function AddressForm() {
   const {

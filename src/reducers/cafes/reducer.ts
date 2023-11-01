@@ -4,7 +4,7 @@ import { produce } from 'immer'
 export interface Coffe {
   id: string
   coffeName: string
-  coffePrice: number
+  price: number
   orderQuantity: number
 }
 interface CafesState {
@@ -24,15 +24,25 @@ export function cafesReducer(state: CafesState, action: any) {
       })
     case ActionTypes.REMOVE_COFFE:
       return produce(state, (draft) => {
-        console.log(action.payload.removeCoffe.id)
         const indexOfRemovedCoffe = draft.cafes.findIndex(
           (coffe) => coffe.id === action.payload.removeCoffe.id,
         )
+        const removeCoffe = draft.cafes[indexOfRemovedCoffe]
         const totalAmount = draft.cafes[indexOfRemovedCoffe].orderQuantity
         const amountToRemove = action.payload.removeCoffe.orderQuantity
-        if (amountToRemove <= totalAmount) {
+        if ( amountToRemove === totalAmount) {
+
+          draft.cafes = draft.cafes.filter((coffe) => coffe.id !== removeCoffe.id);
+        }
+        if(amountToRemove < totalAmount){
           draft.cafes[indexOfRemovedCoffe].orderQuantity -= amountToRemove
         }
+      }) 
+      case ActionTypes.REMOVE_ALL_CAFE:
+      return produce(state, (draft) => {
+       
+          draft.cafes = []
+     
       })
     default:
       return state

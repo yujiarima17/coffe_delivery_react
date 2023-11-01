@@ -1,11 +1,11 @@
 import { ReactNode, createContext, useReducer } from 'react'
 import { Coffe, cafesReducer } from '../reducers/cafes/reducer'
-import { addCoffeAction, removeCoffeAction } from '../reducers/cafes/actions'
+import { addCoffeAction, removeAllCafeAction, removeCoffeAction } from '../reducers/cafes/actions'
 import { OrderProps, orderReducer } from '../reducers/order/reducer'
 import { setOrderAction } from '../reducers/order/actions'
 export interface CoffeData {
-  id: ''
-  coffeName: ''
+  id: string
+  coffeName: string
   price: number
   orderQuantity: number
 }
@@ -16,6 +16,7 @@ interface CafesContextType {
   setOrderData: (data: OrderProps) => void
   addNewCoffe: (data: CoffeData) => void
   removeCoffe: (data: CoffeData) => void
+  removeAllCafe : ()=>void
 }
 export const CafesContext = createContext({} as CafesContextType)
 interface CafesContextProviderProps {
@@ -52,7 +53,7 @@ export function CafesContextProvider({ children }: CafesContextProviderProps) {
   function addNewCoffe(data: CoffeData) {
     const newCoffe: Coffe = {
       id: data.id,
-      coffePrice: data.price,
+      price: data.price,
       coffeName: data.coffeName,
       orderQuantity: data.orderQuantity,
     }
@@ -61,11 +62,14 @@ export function CafesContextProvider({ children }: CafesContextProviderProps) {
   function removeCoffe(data: CoffeData) {
     const removeCoffe: Coffe = {
       id: data.id,
-      coffePrice: data.price,
+      price: data.price,
       coffeName: data.coffeName,
       orderQuantity: data.orderQuantity,
     }
     dispatch(removeCoffeAction(removeCoffe))
+  }
+  function removeAllCafe(){
+    dispatch(removeAllCafeAction())
   }
   return (
     <CafesContext.Provider
@@ -75,6 +79,7 @@ export function CafesContextProvider({ children }: CafesContextProviderProps) {
         setOrderData,
         addNewCoffe,
         removeCoffe,
+        removeAllCafe,
       }}
     >
       {children}
