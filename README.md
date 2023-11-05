@@ -35,3 +35,7 @@ Follow these steps to run the project:
 4. **Start the Development Server:**
    ```bash
    npm run dev
+   
+## 🔗 Links
+
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/yuji-arima-7b7059209/)
