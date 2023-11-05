@@ -18,7 +18,7 @@ export function Success() {
             Agora é só aguardar que logo o café chegará até você
           </div>
         </SucessContainerHeader>
-        <OrderInfo></OrderInfo>
+        <OrderInfo />
       </SucessInfoContainer>
       <img src={DeliveryIllustration} alt="" />
     </SucessContainer>

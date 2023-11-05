@@ -6,32 +6,37 @@ import { OrderFormValidator, OrderDataProps } from '../../validator/Order'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { CafesContext } from '../../contexts/CafesContext'
 import { useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 export function Checkout() {
-  const { setOrderData, removeAllCafe,cafes,orderData} = useContext(CafesContext)
+  const navigate = useNavigate()
+  const { setOrderData, removeAllCafe } = useContext(CafesContext)
   const orderForm = useForm<OrderDataProps>({
     resolver: zodResolver(OrderFormValidator),
   })
   const { handleSubmit, watch, reset } = orderForm
   function handleOrderSubmit(orderData: OrderDataProps) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { amount, ...orderDestinationObject } = orderData
+    const { payment, amount, ...orderDestinationObject } = orderData
     setOrderData({
       orderDestination: orderDestinationObject,
-      orderBill: { amount: orderData.amount, payment: '10' },
-    })  
-    console.log(orderData)
-    reset()  
+      orderBill: { amount: orderData.amount, payment: orderData.payment },
+    })
+    reset()
     removeAllCafe()
-    console.log(cafes)
+    navigate('/success')
   }
- 
+
   const numberAdress = watch('numero')
   const billAmount = watch('amount')
   const disable = !!(numberAdress === undefined || billAmount === 0)
   return (
-    <>  
-       <form action="" id="orderForm" onSubmit={handleSubmit(handleOrderSubmit)}></form>
-  
+    <>
+      <form
+        action=""
+        id="orderForm"
+        onSubmit={handleSubmit(handleOrderSubmit)}
+      ></form>
+
       <CheckoutContainer>
         <div className="sub-container">
           <header>Complete seu pedido</header>
@@ -44,14 +49,17 @@ export function Checkout() {
           <header>Cafés Selecionados</header>
           <FormProvider {...orderForm}>
             <ConfirmOrder>
-              <ConfirmButton type="submit" form="orderForm" name= "ordemFormButton"disabled={disable}>
+              <ConfirmButton
+                type="submit"
+                form="orderForm"
+                name="ordemFormButton"
+                disabled={disable}
+              >
                 CONFIRMAR PEDIDO
               </ConfirmButton>
             </ConfirmOrder>
           </FormProvider>
-        
         </div>
-       
       </CheckoutContainer>
     </>
   )

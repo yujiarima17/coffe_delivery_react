@@ -14,6 +14,9 @@ export const CoffeSpanButton = styled.span`
   outline: 0;
   background: transparent;
   border: 0;
+  &:hover {
+    color: ${(props) => props.theme['purple-dark']};
+  }
 `
 export const CoffeInputNumber = styled.input`
   display: flex;

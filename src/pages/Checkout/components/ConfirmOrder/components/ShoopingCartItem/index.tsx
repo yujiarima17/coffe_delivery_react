@@ -1,25 +1,25 @@
-import { Trash } from "phosphor-react";
-import * as zod from "zod";
-import { Divider } from "../../styles";
+import { Trash } from 'phosphor-react'
+import * as zod from 'zod'
+import { Divider } from '../../styles'
 import {
   ShoppingCartButton,
   ShoppingCartForm,
   ShoppingCartItemContainer,
-} from "./styles";
-import { FormProvider, useForm } from "react-hook-form";
-import { CoffeForm } from "../../../../../Home/components/CoffeList/components/CoffeForm";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useContext } from "react";
-import { CafesContext } from "../../../../../../contexts/CafesContext";
+} from './styles'
+import { FormProvider, useForm } from 'react-hook-form'
+import { CoffeForm } from '../../../../../Home/components/CoffeList/components/CoffeForm'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useContext } from 'react'
+import { CafesContext } from '../../../../../../contexts/CafesContext'
 
 interface ShoppingCartItemProps {
-  id: string;
-  coffeName: string;
-  price: number;
-  orderQuantity: number;
+  id: string
+  coffeName: string
+  price: number
+  orderQuantity: number
 }
 interface RemoveCoffeData {
-  orderQuantity: number;
+  orderQuantity: number
 }
 export function ShoppingCartItem({
   id,
@@ -27,32 +27,28 @@ export function ShoppingCartItem({
   price,
   orderQuantity,
 }: ShoppingCartItemProps) {
-  const { removeCoffe } = useContext(CafesContext);
+  const { removeCoffe } = useContext(CafesContext)
   const removeCoffeItemValidationSchema = zod.object({
     orderQuantity: zod
       .number()
-      .min(1, "One is the minimum")
-      .max(20, "Twenty is the maximum"),
-  });
+      .min(1, 'One is the minimum')
+      .max(20, 'Twenty is the maximum'),
+  })
   const removeCoffeForm = useForm<RemoveCoffeData>({
     resolver: zodResolver(removeCoffeItemValidationSchema),
-  });
+  })
   function handleRemoveCoffe(data: RemoveCoffeData) {
     const newData = {
       id,
       coffeName,
       orderQuantity: data.orderQuantity,
       price,
-    };
-    removeCoffe(newData);
-    
+    }
+    removeCoffe(newData)
   }
-  const {
-    handleSubmit,
-    formState: { errors },
-  } = removeCoffeForm;
+  const { handleSubmit } = removeCoffeForm
 
-  const coffePrice = orderQuantity * price;
+  const coffePrice = orderQuantity * price
   return (
     <>
       <ShoppingCartItemContainer>
@@ -84,5 +80,5 @@ export function ShoppingCartItem({
       </ShoppingCartItemContainer>
       <Divider />
     </>
-  );
+  )
 }

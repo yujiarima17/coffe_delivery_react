@@ -12,9 +12,9 @@ export function Header() {
       (accumulator, currentValue) => accumulator + currentValue.orderQuantity,
       0,
     )
-       return cafesAmount
+    return cafesAmount
   }
-  const { localidade, uf } = orderData?.orderDestination || {};
+  const { localidade, uf } = orderData?.orderDestination || {}
   const cafesAmount = getCafesAmount(cafes)
   return (
     <HeaderContainer>
@@ -22,8 +22,9 @@ export function Header() {
       <div className="info-bar">
         <span>
           <MapPin size={24} color="#8047F8" weight="fill" />{' '}
-          {uf && localidade ? 
-            `${orderData.orderDestination.localidade}, ${orderData.orderDestination.uf}` : null}
+          {uf && localidade
+            ? `${orderData.orderDestination.localidade}, ${orderData.orderDestination.uf}`
+            : null}
         </span>
         <NavLink to="/checkout">
           <span className="itemsInCart">{cafesAmount}</span>

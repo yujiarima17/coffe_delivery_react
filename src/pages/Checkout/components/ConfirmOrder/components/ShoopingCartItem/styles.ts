@@ -37,4 +37,7 @@ export const ShoppingCartButton = styled(CoffeButton)`
   border-radius: 6px;
   gap: 4px;
   font: ${(props) => props.theme.font['Button M']};
+  &:hover {
+    background: ${(props) => props.theme['base-hover']};
+  }
 `

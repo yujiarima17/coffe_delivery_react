@@ -129,4 +129,3 @@ export const coffesData: Array<coffeProps> = [
     image: 'Irlandês',
   },
 ]
-console.log(coffesData)

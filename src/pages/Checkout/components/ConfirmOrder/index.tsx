@@ -1,29 +1,25 @@
-import { CafesContext } from "../../../../contexts/CafesContext";
-import { ShoppingCartItem } from "./components/ShoopingCartItem";
-import { ShoppingCartBill } from "./components/ShoppingCartBill";
-import { ConfirmOrderContainer } from "./styles";
+import { CafesContext } from '../../../../contexts/CafesContext'
+import { ShoppingCartItem } from './components/ShoopingCartItem'
+import { ShoppingCartBill } from './components/ShoppingCartBill'
+import { ConfirmOrderContainer } from './styles'
 
-import { useContext } from "react";
+import { useContext } from 'react'
 interface ConfirmOrderProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 export function ConfirmOrder({ children }: ConfirmOrderProps) {
-  const { cafes } = useContext(CafesContext);
-  
+  const { cafes } = useContext(CafesContext)
+
   return (
     <>
       <ConfirmOrderContainer>
         {cafes.map((coffe) => (
-          <ShoppingCartItem
-          {...coffe}
-          />
+          <ShoppingCartItem {...coffe} key={coffe.id} />
         ))}
-        
+
         <ShoppingCartBill />
         {children}
-        
       </ConfirmOrderContainer>
-      {console.log(cafes)}
     </>
-  );
+  )
 }

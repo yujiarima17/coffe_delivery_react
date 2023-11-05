@@ -19,4 +19,7 @@ export const PaymentOption = styled.div`
     background: ${(props) => props.theme['purple-light']};
     border: 1px solid ${(props) => props.theme.purple};
   }
+  &:hover {
+    background: ${(props) => props.theme['base-hover']};
+  }
 `

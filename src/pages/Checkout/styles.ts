@@ -26,4 +26,7 @@ export const ConfirmButton = styled.button`
   color: ${(props) => props.theme.white};
   &:disabled {
   }
+  &:hover {
+    background: ${(props) => props.theme['yellow-dark']};
+  }
 `

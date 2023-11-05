@@ -1,6 +1,10 @@
 import { ReactNode, createContext, useReducer } from 'react'
 import { Coffe, cafesReducer } from '../reducers/cafes/reducer'
-import { addCoffeAction, removeAllCafeAction, removeCoffeAction } from '../reducers/cafes/actions'
+import {
+  addCoffeAction,
+  removeAllCafeAction,
+  removeCoffeAction,
+} from '../reducers/cafes/actions'
 import { OrderProps, orderReducer } from '../reducers/order/reducer'
 import { setOrderAction } from '../reducers/order/actions'
 export interface CoffeData {
@@ -16,7 +20,7 @@ interface CafesContextType {
   setOrderData: (data: OrderProps) => void
   addNewCoffe: (data: CoffeData) => void
   removeCoffe: (data: CoffeData) => void
-  removeAllCafe : ()=>void
+  removeAllCafe: () => void
 }
 export const CafesContext = createContext({} as CafesContextType)
 interface CafesContextProviderProps {
@@ -68,7 +72,7 @@ export function CafesContextProvider({ children }: CafesContextProviderProps) {
     }
     dispatch(removeCoffeAction(removeCoffe))
   }
-  function removeAllCafe(){
+  function removeAllCafe() {
     dispatch(removeAllCafeAction())
   }
   return (

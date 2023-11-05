@@ -9,7 +9,6 @@ import {
   AddressContinuedInput,
 } from './styles'
 
-
 export function AddressForm() {
   const {
     register,
@@ -31,7 +30,6 @@ export function AddressForm() {
       console.log(e)
     }
   }
-  console.log(errors)
   return (
     <Container>
       <Header>

@@ -8,5 +8,6 @@ export const OrderFormValidator = zod.object({
   localidade: zod.string(),
   uf: zod.string(),
   amount: zod.number(),
+  payment: zod.string(),
 })
 export type OrderDataProps = zod.infer<typeof OrderFormValidator>

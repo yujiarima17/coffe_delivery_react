@@ -32,7 +32,6 @@ export const AddressContinuedInput = styled.div`
 export const DeliveryFormInput = styled.input<{
   $width: string
 }>`
-
   display: flex;
   outline: 0;
   border: 1.5px solid ${(props) => props.theme['base-button']};

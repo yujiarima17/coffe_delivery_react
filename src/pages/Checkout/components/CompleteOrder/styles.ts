@@ -9,7 +9,7 @@ export const Header = styled.header`
   display: flex;
   gap: 8px;
   align-items: start;
-  .info {
+  .infoHeader {
     display: flex;
     flex-direction: column;
     span:first-child {

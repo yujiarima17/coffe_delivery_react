@@ -26,7 +26,6 @@ export function orderReducer(state: OrderState, action: any) {
   switch (action.type) {
     case ActionTypes.SET_ORDER:
       return produce(state, (draft) => {
-        console.log(action.payload.newOrder)
         draft.orderData = action.payload.newOrder
       })
 
