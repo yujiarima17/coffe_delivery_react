@@ -1,27 +1,37 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Coffe Delivery
 
-Currently, two official plugins are available:
+## Libraries Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project makes use of several libraries for different purposes:
 
-## Expanding the ESLint configuration
+- **@hookform/resolvers**: Version 3.3.1
+- **axios**: Version 1.6.0
+- **immer**: Version 10.0.3
+- **phosphor-react**: Version 1.4.1
+- **react**: Version 18.2.0
+- **react-dom**: Version 18.2.0
+- **react-hook-form**: Version 7.47.0
+- **react-router-dom**: Version 6.17.0
+- **styled-components**: Version 6.0.8
+- **uuid**: Version 9.0.1
+- **zod**: Version 3.22.4
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## How to Run the Project
 
-- Configure the top-level `parserOptions` property like this:
+Follow these steps to run the project:
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/your-username/coffe_delivery_react.git
+   
+2. **Change Directory**
+   ```bash
+   cd coffe_delivery_react
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+3. **Install Dependencies:**
+   ```bash
+   cd coffe_delivery_react
+4. **Start the Development Server:**
+   ```bash
+   npm run dev
