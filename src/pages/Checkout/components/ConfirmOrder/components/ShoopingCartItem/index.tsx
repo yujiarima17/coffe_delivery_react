@@ -32,7 +32,7 @@ export function ShoppingCartItem({
     orderQuantity: zod
       .number()
       .min(1, 'One is the minimum')
-      .max(20, 'Twenty is the maximum'),
+      .max(orderQuantity, 'Twenty is the maximum'),
   })
   const removeCoffeForm = useForm<RemoveCoffeData>({
     resolver: zodResolver(removeCoffeItemValidationSchema),
@@ -63,7 +63,7 @@ export function ShoppingCartItem({
                 id="shoppingCartForm"
               >
                 <FormProvider {...removeCoffeForm}>
-                  <CoffeForm></CoffeForm>
+                  <CoffeForm maxQuantity = {orderQuantity}></CoffeForm>
                 </FormProvider>
                 <ShoppingCartButton
                   type="submit"

@@ -35,7 +35,7 @@ export function AddressForm() {
       <Header>
         <MapPinLine size={22} color="#574F4D" />
         <div className="info">
-          <span>Endereço de Entrega</span>
+          <span>Endereço de Entrega. </span>
           <span>Informe o endereço onde deseja receber seu pedido</span>
         </div>
       </Header>

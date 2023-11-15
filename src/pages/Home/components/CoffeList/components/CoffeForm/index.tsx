@@ -1,10 +1,13 @@
 import { Input } from '../../../../../../components/Input'
 import { CoffeFormContainer } from './styles'
 
-export function CoffeForm() {
+interface CoffeFormProps{
+  maxQuantity:number
+}
+export function CoffeForm({maxQuantity}:CoffeFormProps) {
   return (
     <CoffeFormContainer>
-      <Input />
+      <Input maxQuantity = {maxQuantity}/>
     </CoffeFormContainer>
   )
 }

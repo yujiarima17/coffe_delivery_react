@@ -3,7 +3,10 @@ import { CoffeSpanButton, CoffeInput, CoffeInputNumber } from './styles'
 import { useEffect, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 
-export function Input() {
+export interface InputProps{
+  maxQuantity?:number
+}
+export function Input({maxQuantity}:InputProps) {
   const {
     formState: { isSubmitSuccessful },
     register,
@@ -37,7 +40,7 @@ export function Input() {
       <CoffeInputNumber
         id="orderQuantity"
         value={quantity}
-        max={20}
+        max={maxQuantity ?? 20 }
         placeholder="1"
         step={1}
         type="number"
