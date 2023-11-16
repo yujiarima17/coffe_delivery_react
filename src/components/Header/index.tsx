@@ -1,5 +1,6 @@
 import { HeaderContainer } from './styles'
-import logo from '../../assets/logo.svg'
+// eslint-disable-next-line import/no-absolute-path
+import logo from '/assets/logo.svg'
 import { MapPin, ShoppingCart } from 'phosphor-react'
 import { NavLink } from 'react-router-dom'
 import { CafesContext } from '../../contexts/CafesContext'
