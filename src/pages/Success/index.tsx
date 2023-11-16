@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-absolute-path
-import DeliveryIllustration from '/src/assets/delivery_illustration.svg'
+import DeliveryIllustration from '/assets/delivery_illustration.svg'
 
 import {
   SucessContainer,
