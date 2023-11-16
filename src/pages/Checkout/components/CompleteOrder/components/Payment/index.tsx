@@ -1,30 +1,32 @@
-import { CurrencyDollar, CreditCard, Money, Bank } from 'phosphor-react';
-import { Container, Header } from '../../styles';
-import { PaymentOptionsContainer, PaymentOption } from './styles';
-import { useEffect, useState } from 'react';
-import { useFormContext } from 'react-hook-form';
+import { CurrencyDollar, CreditCard, Money, Bank } from 'phosphor-react'
+import { Container, Header } from '../../styles'
+import { PaymentOptionsContainer, PaymentOption } from './styles'
+import { useEffect, useState } from 'react'
+import { useFormContext } from 'react-hook-form'
 
-type PaymentOptionKey = 'Cartão de Crédito' | 'Cartão de Débito' | 'Dinheiro';
+type PaymentOptionKey = 'Cartão de Crédito' | 'Cartão de Débito' | 'Dinheiro'
 
 export function Payment() {
-  const { register, setValue } = useFormContext();
+  const { register, setValue } = useFormContext()
   useEffect(() => {
-    register('payment', { required: true });
-  }, [register]);
+    register('payment', { required: true })
+  }, [register])
 
-  const [selectedOptions, setSelectedOptions] = useState<Record<PaymentOptionKey, boolean>>({
+  const [selectedOptions, setSelectedOptions] = useState<
+    Record<PaymentOptionKey, boolean>
+  >({
     'Cartão de Crédito': false,
     'Cartão de Débito': false,
     Dinheiro: false,
-  });
+  })
 
   const toggleClass = (option: PaymentOptionKey) => {
     setSelectedOptions({
       ...selectedOptions,
       [option]: !selectedOptions[option],
-    });
-    setValue('payment', option);
-  };
+    })
+    setValue('payment', option)
+  }
 
   return (
     <Container>
@@ -32,7 +34,9 @@ export function Payment() {
         <CurrencyDollar size={22} color="#8047F8" />
         <div className="infoHeader">
           <span>Pagamento</span>
-          <span>O pagamento é feito na entrega. Escolha a forma que deseja pagar</span>
+          <span>
+            O pagamento é feito na entrega. Escolha a forma que deseja pagar
+          </span>
         </div>
       </Header>
       <PaymentOptionsContainer>
@@ -59,5 +63,5 @@ export function Payment() {
         </PaymentOption>
       </PaymentOptionsContainer>
     </Container>
-  );
+  )
 }
