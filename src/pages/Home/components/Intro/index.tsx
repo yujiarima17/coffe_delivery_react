@@ -1,5 +1,6 @@
 import { IntroContainer, IntroIcons, IntroInfo } from './styles'
-import banner from '../../../../assets/banner.svg'
+// eslint-disable-next-line import/no-absolute-path
+import banner from '/assets/banner.svg'
 import { ShoppingCart } from 'phosphor-react'
 export function Intro() {
   return (
