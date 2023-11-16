@@ -53,7 +53,7 @@ export function ShoppingCartItem({
     <>
       <ShoppingCartItemContainer>
         <div className="info">
-          <img src={`/src/assets/Type=${coffeName}.svg`} alt="" />
+          <img src={`assets/Type=${coffeName}.svg`} alt="" />
           <div className="details">
             <span>{coffeName}</span>
             <div className="coffeActions">

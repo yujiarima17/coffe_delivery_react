@@ -24,7 +24,7 @@ export function CoffeCard({
   image,
 }: coffeProps) {
   const { addNewCoffe } = useContext(CafesContext)
-  const urlImage = `/src/assets/Type=${image}.svg`
+  const urlImage = `/assets/Type=${image}.svg`
 
   const addCoffeItemValidationSchema = zod.object({
     orderQuantity: zod
