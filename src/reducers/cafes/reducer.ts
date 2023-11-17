@@ -28,21 +28,21 @@ export function cafesReducer(state: CafesState, action: any) {
           (coffe) => coffe.id === action.payload.removeCoffe.id,
         )
         const removeCoffe = draft.cafes[indexOfRemovedCoffe]
+        console.log(removeCoffe.coffeName)
         const totalAmount = draft.cafes[indexOfRemovedCoffe].orderQuantity
         const amountToRemove = action.payload.removeCoffe.orderQuantity
-        if ( amountToRemove === totalAmount) {
-
-          draft.cafes = draft.cafes.filter((coffe) => coffe.id !== removeCoffe.id);
+        if (amountToRemove === totalAmount) {
+          draft.cafes = draft.cafes.filter(
+            (coffe) => coffe.id !== removeCoffe.id,
+          )
         }
-        if(amountToRemove < totalAmount){
+        if (amountToRemove < totalAmount) {
           draft.cafes[indexOfRemovedCoffe].orderQuantity -= amountToRemove
         }
-      }) 
-      case ActionTypes.REMOVE_ALL_CAFE:
+      })
+    case ActionTypes.REMOVE_ALL_CAFE:
       return produce(state, (draft) => {
-       
-          draft.cafes = []
-     
+        draft.cafes = []
       })
     default:
       return state

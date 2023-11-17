@@ -23,12 +23,12 @@ export function ShoppingCartBill() {
         <div className="shoppingCartTotal">
           R$
           <fieldset disabled>
-          <input
+            <input
               type="text"
               value={valorTotal.toFixed(2)}
               id="amount"
               {...register('amount', {
-                valueAsNumber: true
+                valueAsNumber: true,
               })}
             />
           </fieldset>

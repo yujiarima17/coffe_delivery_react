@@ -41,7 +41,17 @@ export const DeliveryFormInput = styled.input<{
   border-radius: 4px;
   color: ${(props) => props.theme['base-text']};
   padding: 12px;
+  &:active,
+  &:focus {
+    border: 1px solid #c47f17;
+  }
+  &:active {
+    background: transparent;
+  }
 `
 export const DeliveryFormInput2 = styled(DeliveryFormInput)`
   border: 0;
+  &:focus {
+    background: transparent;
+  }
 `

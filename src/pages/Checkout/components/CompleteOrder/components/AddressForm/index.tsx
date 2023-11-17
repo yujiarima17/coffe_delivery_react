@@ -47,7 +47,6 @@ export function AddressForm() {
           {...register('cep', {
             onBlur: () => getAdressDataByCEP(cepField),
           })}
-          // onBlur={getAdressDataByCEP(cepField)}
         />
         <DeliveryFormInput
           id="RUA"

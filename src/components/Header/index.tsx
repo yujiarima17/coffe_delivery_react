@@ -19,7 +19,10 @@ export function Header() {
   const cafesAmount = getCafesAmount(cafes)
   return (
     <HeaderContainer>
-      <img src={logo} alt="" />
+      <NavLink to="/">
+        <img src={logo} alt="" />
+      </NavLink>
+
       <div className="info-bar">
         <span>
           <MapPin size={24} color="#8047F8" weight="fill" />{' '}

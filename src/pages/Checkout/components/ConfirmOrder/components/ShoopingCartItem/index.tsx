@@ -27,6 +27,7 @@ export function ShoppingCartItem({
   price,
   orderQuantity,
 }: ShoppingCartItemProps) {
+  console.log(id, coffeName, price, orderQuantity)
   const { removeCoffe } = useContext(CafesContext)
   const removeCoffeItemValidationSchema = zod.object({
     orderQuantity: zod
@@ -38,12 +39,14 @@ export function ShoppingCartItem({
     resolver: zodResolver(removeCoffeItemValidationSchema),
   })
   function handleRemoveCoffe(data: RemoveCoffeData) {
+    console.log(data)
     const newData = {
       id,
       coffeName,
       orderQuantity: data.orderQuantity,
       price,
     }
+    console.log(newData)
     removeCoffe(newData)
   }
   const { handleSubmit } = removeCoffeForm
@@ -63,13 +66,9 @@ export function ShoppingCartItem({
                 id="shoppingCartForm"
               >
                 <FormProvider {...removeCoffeForm}>
-                  <CoffeForm maxQuantity = {orderQuantity}></CoffeForm>
+                  <CoffeForm maxQuantity={orderQuantity}></CoffeForm>
                 </FormProvider>
-                <ShoppingCartButton
-                  type="submit"
-                  form="shoppingCartForm"
-                  name="button01"
-                >
+                <ShoppingCartButton type="submit">
                   <Trash size={24} color="#8047F8" /> REMOVER
                 </ShoppingCartButton>
               </ShoppingCartForm>

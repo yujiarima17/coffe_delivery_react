@@ -36,7 +36,12 @@ export function CoffeCard({
     resolver: zodResolver(addCoffeItemValidationSchema),
   })
 
-  const { handleSubmit, reset } = addCoffeForm
+  const {
+    handleSubmit,
+    reset,
+
+    watch,
+  } = addCoffeForm
   function handleAddCoffe(data: AddCoffeData) {
     const newData = {
       id,
@@ -49,7 +54,9 @@ export function CoffeCard({
 
     reset()
   }
-
+  const coffeQuantity = watch('orderQuantity')
+  const invalidQuantity = coffeQuantity <= 0 || coffeQuantity > 20
+  console.log(invalidQuantity)
   return (
     <CoffeCardContainer>
       <CoffeCardInfo>
@@ -75,7 +82,7 @@ export function CoffeCard({
           <FormProvider {...addCoffeForm}>
             <CoffeForm />
           </FormProvider>
-          <CoffeButton type="submit">
+          <CoffeButton type="submit" disabled={invalidQuantity}>
             <ShoppingCartSimple size={24} color="#FFFFFF" weight="fill" />
           </CoffeButton>
         </form>

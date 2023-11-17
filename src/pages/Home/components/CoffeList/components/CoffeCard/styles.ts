@@ -82,7 +82,10 @@ export const CoffeButton = styled.button`
   outline: 0;
   justify-content: center;
   align-items: center;
-  background: ${(props) => props.theme['purple-dark']};
+  background: ${(props) => props.theme.purple};
   color: ${(props) => props.theme.white};
   border-radius: 6px;
+  &:disabled {
+    background: ${(props) => props.theme['purple-dark']};
+  }
 `
