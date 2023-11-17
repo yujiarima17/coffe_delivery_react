@@ -31,7 +31,7 @@ Follow these steps to run the project:
 
 3. **Install Dependencies:**
    ```bash
-   cd coffe_delivery_react
+   npm install
 4. **Start the Development Server:**
    ```bash
    npm run dev
